@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card components renders the UI as expected 1`] = `
+<div
+  className="Card"
+>
+  <p />
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Delete
+  </button>
+  <h3 />
+  <p />
+</div>
+`;
+
+exports[`renders the UI as expected 1`] = `
+<div
+  className="Card"
+>
+  <p />
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Delete
+  </button>
+  <h3 />
+  <p />
+</div>
+`;
