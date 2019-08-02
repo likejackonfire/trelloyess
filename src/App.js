@@ -9,42 +9,42 @@ class App extends Component {
     store: STORE
   };
 
-  handleAdd = (id) => {
-    const newCard = this.newRandomCard();
-    const newList = this.state.store.lists.map (list => {
-      if(list.id === id) {
-        list.cardIds.push(newCard.id);
-  
+handleAdd = (id) => {
+console.log('handle add card')
+  const newCard = this.newRandomCard();
+  const newList = this.state.store.lists.map (list => {
+    if(list.id === id) {
+    list.cardIds.push(newCard.id);
+    }
+    return list;
+})
+  this.setState({
+    store:{
+      lists: newList,
+      allCards: {...this.state.store.allCards,
+      [newCard.id]: newCard
       }
-      return list;
-    })
-    this.setState({
-      store:{
-        lists: newList,
-        allCards: {...this.state.store.allCards, 
-        [newCard.id]: newCard}
-      }
-    })  
-    console.log(this.state.store)
+    }
+  })
+}
+
+handleDelete = (cardId) => {
+  console.log('handle delete')
+  const { lists } = this.state.store;
+  const newLists = lists.map(list => {
+    list.cardIds = list.cardIds.filter(id => id !== cardId);
+    return list;
+})
+
+const newCardList = this.omit(this.state.store.allCards, cardId)
+
+this.setState({
+  store: {
+    lists: newLists,
+    allCards: newCardList
   }
-
-  handleDelete = (cardId) => {
-    console.log("from handle delete")
-    const { lists } = this.state.store;
-    const newLists = lists.map(list => {
-      list.cardIds = list.cardIds.filter(id => id !== cardId);
-      return list;
-    });
-
-    const newCardList = this.omit(this.state.store.allCards, cardId);
-
-    this.setState({
-      store: {
-        lists: newLists,
-        allCards: newCardList
-      }
-    })
-  }
+})
+}
 
   newRandomCard = () => {
     const id = Math.random().toString(36).substring(2, 4)
